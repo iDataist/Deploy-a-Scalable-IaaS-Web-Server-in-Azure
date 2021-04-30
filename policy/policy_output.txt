@@ -1,4 +1,4 @@
-huiren P1 $ az policy assignment create \
+huiren policy $ az policy assignment create \
 > --policy require-a-tag-on-vm \
 > --display-name tagging-policy \
 > --name tagging-policy \
@@ -28,7 +28,7 @@ huiren P1 $ az policy assignment create \
   },
   "type": "Microsoft.Authorization/policyAssignments"
 }
-huiren P1 $ az policy assignment list -g rg
+huiren policy $ az policy assignment list -g rg
 [
   {
     "description": null,

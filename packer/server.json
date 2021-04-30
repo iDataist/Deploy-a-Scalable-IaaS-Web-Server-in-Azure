@@ -12,6 +12,8 @@
 		"subscription_id": "{{user `subscription_id`}}",
 		"client_id": "{{user `client_id`}}",
 		"client_secret": "{{user `client_secret`}}",
+		
+		"azure_tags": {"DevOps": "Deploy a Web Server in Azure"},
 
 		"os_type": "Linux",
 		"image_publisher": "Canonical",
@@ -19,7 +21,7 @@
 		"image_sku": "18.04-LTS",
 
 		"managed_image_resource_group_name": "rg",
-		"managed_image_name": "myPackerImage",
+		"managed_image_name": "Ubuntu18.04",
 
 		"location": "West US 2",
 		"vm_size": "Standard_A2"

@@ -1,4 +1,7 @@
-az group create --location westus2 --name rg
+# policy
+az group create \
+--location westus2 \
+--name rg
 
 az policy definition create \
 --name require-a-tag-on-vm \
@@ -12,12 +15,7 @@ az policy assignment create \
 
 az policy assignment list -g rg
 
-terraform plan -out vm.json
-terraform apply "vm.json"
-terraform show
-terraform destroy
-terraform show
-
+# packer
 az ad sp create-for-rbac --query "{ client_id: appId, client_secret: password, tenant_id: tenant }"
 az account show --query "{ subscription_id: id }"
 
@@ -28,4 +26,13 @@ export BUILD_CLIENT_SECRET=fVDai19jQPl60L_xX-8bWeBek7Kdd72mx6
 
 packer build server.json
 az image list
-az image delete -g packer-rg -n myPackerImage
+az image delete -g rg -n Ubuntu18.04
+
+# terraform
+# image_resource_id = "/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Compute/images/Ubuntu18.04"
+terraform init
+terraform plan -out vm.json
+terraform apply "vm.json"
+terraform show
+terraform destroy
+terraform show
