@@ -1,0 +1,17 @@
+{
+  "if": {
+      "allof": [
+          {
+              "field": "type",
+              "equals": "Microsoft.Compute/virtualMachines"
+          },
+          {
+              "field": "tags['DevOps']",
+              "exists": "false"
+          }
+      ]
+  },
+  "then": {
+      "effect": "deny"
+  }
+}
