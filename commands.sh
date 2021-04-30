@@ -21,8 +21,8 @@ az account show --query "{ subscription_id: id }"
 
 export BUILD_SUBSCRIPTION_ID=5bb35c36-233e-4b7e-afd9-a2b795899fb9
 export BUILD_TENANT_ID=10e19cba-5b4d-42f0-a5b1-0e066efe7fe1
-export BUILD_CLIENT_ID=1602080b-a9ab-4a0e-8442-bbf19b4fbd27
-export BUILD_CLIENT_SECRET=fVDai19jQPl60L_xX-8bWeBek7Kdd72mx6
+export BUILD_CLIENT_ID=27eec4e2-4735-42ac-bc65-7e7782f18835
+export BUILD_CLIENT_SECRET=Lso7x-InVHvxioB4LrjhKCnDf7R0JjzXwG
 
 packer build server.json
 az image list
