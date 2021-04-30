@@ -1,0 +1,676 @@
+huiren terraform $ terraform plan -out vm.json
+var.image_resource_id
+  Packer image resource ID.
+
+  Enter a value: /subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Compute/images/Ubuntu18.04
+
+var.instance_count
+  The number of resources.
+
+  Enter a value: 2
+
+var.location
+  The Azure Region in which all resources in this example should be created.
+
+  Enter a value: westus2
+
+var.prefix
+  The prefix which should be used for all resources in this example
+
+  Enter a value: 20210405
+
+var.resource_group
+  The Azure Resource Group in which all resources in this example should be created.
+
+  Enter a value: rg
+
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # azurerm_availability_set.avset will be created
+  + resource "azurerm_availability_set" "avset" {
+      + id                           = (known after apply)
+      + location                     = "westus2"
+      + managed                      = true
+      + name                         = "avset"
+      + platform_fault_domain_count  = 2
+      + platform_update_domain_count = 2
+      + resource_group_name          = "rg"
+    }
+
+  # azurerm_lb.main will be created
+  + resource "azurerm_lb" "main" {
+      + id                   = (known after apply)
+      + location             = "westus2"
+      + name                 = "loadBalancer"
+      + private_ip_address   = (known after apply)
+      + private_ip_addresses = (known after apply)
+      + resource_group_name  = "rg"
+      + sku                  = "Basic"
+
+      + frontend_ip_configuration {
+          + id                            = (known after apply)
+          + inbound_nat_rules             = (known after apply)
+          + load_balancer_rules           = (known after apply)
+          + name                          = "publicIPAddress"
+          + outbound_rules                = (known after apply)
+          + private_ip_address            = (known after apply)
+          + private_ip_address_allocation = (known after apply)
+          + private_ip_address_version    = "IPv4"
+          + public_ip_address_id          = (known after apply)
+          + public_ip_prefix_id           = (known after apply)
+          + subnet_id                     = (known after apply)
+        }
+    }
+
+  # azurerm_lb_backend_address_pool.main will be created
+  + resource "azurerm_lb_backend_address_pool" "main" {
+      + backend_ip_configurations = (known after apply)
+      + id                        = (known after apply)
+      + load_balancing_rules      = (known after apply)
+      + loadbalancer_id           = (known after apply)
+      + name                      = "BackEndAddressPool"
+      + outbound_rules            = (known after apply)
+      + resource_group_name       = "rg"
+    }
+
+  # azurerm_linux_virtual_machine.main[0] will be created
+  + resource "azurerm_linux_virtual_machine" "main" {
+      + admin_password                  = (sensitive value)
+      + admin_username                  = "vmadmin"
+      + allow_extension_operations      = true
+      + availability_set_id             = (known after apply)
+      + computer_name                   = (known after apply)
+      + disable_password_authentication = false
+      + extensions_time_budget          = "PT1H30M"
+      + id                              = (known after apply)
+      + location                        = "westus2"
+      + max_bid_price                   = -1
+      + name                            = "20210405-vm"
+      + network_interface_ids           = (known after apply)
+      + platform_fault_domain           = -1
+      + priority                        = "Regular"
+      + private_ip_address              = (known after apply)
+      + private_ip_addresses            = (known after apply)
+      + provision_vm_agent              = true
+      + public_ip_address               = (known after apply)
+      + public_ip_addresses             = (known after apply)
+      + resource_group_name             = "rg"
+      + size                            = "Standard_D2s_v3"
+      + source_image_id                 = "/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Compute/images/Ubuntu18.04"
+      + tags                            = {
+          + "DevOps" = "Deploy a Web Server in Azure"
+        }
+      + virtual_machine_id              = (known after apply)
+      + zone                            = (known after apply)
+
+      + os_disk {
+          + caching                   = "ReadWrite"
+          + disk_size_gb              = (known after apply)
+          + name                      = (known after apply)
+          + storage_account_type      = "Standard_LRS"
+          + write_accelerator_enabled = false
+        }
+    }
+
+  # azurerm_linux_virtual_machine.main[1] will be created
+  + resource "azurerm_linux_virtual_machine" "main" {
+      + admin_password                  = (sensitive value)
+      + admin_username                  = "vmadmin"
+      + allow_extension_operations      = true
+      + availability_set_id             = (known after apply)
+      + computer_name                   = (known after apply)
+      + disable_password_authentication = false
+      + extensions_time_budget          = "PT1H30M"
+      + id                              = (known after apply)
+      + location                        = "westus2"
+      + max_bid_price                   = -1
+      + name                            = "20210405-vm"
+      + network_interface_ids           = (known after apply)
+      + platform_fault_domain           = -1
+      + priority                        = "Regular"
+      + private_ip_address              = (known after apply)
+      + private_ip_addresses            = (known after apply)
+      + provision_vm_agent              = true
+      + public_ip_address               = (known after apply)
+      + public_ip_addresses             = (known after apply)
+      + resource_group_name             = "rg"
+      + size                            = "Standard_D2s_v3"
+      + source_image_id                 = "/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Compute/images/Ubuntu18.04"
+      + tags                            = {
+          + "DevOps" = "Deploy a Web Server in Azure"
+        }
+      + virtual_machine_id              = (known after apply)
+      + zone                            = (known after apply)
+
+      + os_disk {
+          + caching                   = "ReadWrite"
+          + disk_size_gb              = (known after apply)
+          + name                      = (known after apply)
+          + storage_account_type      = "Standard_LRS"
+          + write_accelerator_enabled = false
+        }
+    }
+
+  # azurerm_managed_disk.main[0] will be created
+  + resource "azurerm_managed_disk" "main" {
+      + create_option        = "Empty"
+      + disk_iops_read_write = (known after apply)
+      + disk_mbps_read_write = (known after apply)
+      + disk_size_gb         = 1023
+      + id                   = (known after apply)
+      + location             = "westus2"
+      + name                 = "datadisk_existing_0"
+      + resource_group_name  = "rg"
+      + source_uri           = (known after apply)
+      + storage_account_type = "Standard_LRS"
+    }
+
+  # azurerm_managed_disk.main[1] will be created
+  + resource "azurerm_managed_disk" "main" {
+      + create_option        = "Empty"
+      + disk_iops_read_write = (known after apply)
+      + disk_mbps_read_write = (known after apply)
+      + disk_size_gb         = 1023
+      + id                   = (known after apply)
+      + location             = "westus2"
+      + name                 = "datadisk_existing_1"
+      + resource_group_name  = "rg"
+      + source_uri           = (known after apply)
+      + storage_account_type = "Standard_LRS"
+    }
+
+  # azurerm_network_interface.main[0] will be created
+  + resource "azurerm_network_interface" "main" {
+      + applied_dns_servers           = (known after apply)
+      + dns_servers                   = (known after apply)
+      + enable_accelerated_networking = false
+      + enable_ip_forwarding          = false
+      + id                            = (known after apply)
+      + internal_dns_name_label       = (known after apply)
+      + internal_domain_name_suffix   = (known after apply)
+      + location                      = "westus2"
+      + mac_address                   = (known after apply)
+      + name                          = "20210405-nic"
+      + private_ip_address            = (known after apply)
+      + private_ip_addresses          = (known after apply)
+      + resource_group_name           = "rg"
+      + virtual_machine_id            = (known after apply)
+
+      + ip_configuration {
+          + name                          = "internal"
+          + primary                       = (known after apply)
+          + private_ip_address            = (known after apply)
+          + private_ip_address_allocation = "dynamic"
+          + private_ip_address_version    = "IPv4"
+          + subnet_id                     = (known after apply)
+        }
+    }
+
+  # azurerm_network_interface.main[1] will be created
+  + resource "azurerm_network_interface" "main" {
+      + applied_dns_servers           = (known after apply)
+      + dns_servers                   = (known after apply)
+      + enable_accelerated_networking = false
+      + enable_ip_forwarding          = false
+      + id                            = (known after apply)
+      + internal_dns_name_label       = (known after apply)
+      + internal_domain_name_suffix   = (known after apply)
+      + location                      = "westus2"
+      + mac_address                   = (known after apply)
+      + name                          = "20210405-nic"
+      + private_ip_address            = (known after apply)
+      + private_ip_addresses          = (known after apply)
+      + resource_group_name           = "rg"
+      + virtual_machine_id            = (known after apply)
+
+      + ip_configuration {
+          + name                          = "internal"
+          + primary                       = (known after apply)
+          + private_ip_address            = (known after apply)
+          + private_ip_address_allocation = "dynamic"
+          + private_ip_address_version    = "IPv4"
+          + subnet_id                     = (known after apply)
+        }
+    }
+
+  # azurerm_network_security_group.main will be created
+  + resource "azurerm_network_security_group" "main" {
+      + id                  = (known after apply)
+      + location            = "westus2"
+      + name                = "20210405-nsg"
+      + resource_group_name = "rg"
+      + security_rule       = [
+          + {
+              + access                                     = "Allow"
+              + description                                = ""
+              + destination_address_prefix                 = "10.0.2.0/24"
+              + destination_address_prefixes               = []
+              + destination_application_security_group_ids = []
+              + destination_port_range                     = "*"
+              + destination_port_ranges                    = []
+              + direction                                  = "Inbound"
+              + name                                       = "internal_inbound"
+              + priority                                   = 100
+              + protocol                                   = "Tcp"
+              + source_address_prefix                      = "10.0.2.0/24"
+              + source_address_prefixes                    = []
+              + source_application_security_group_ids      = []
+              + source_port_range                          = "*"
+              + source_port_ranges                         = []
+            },
+          + {
+              + access                                     = "Allow"
+              + description                                = ""
+              + destination_address_prefix                 = "10.0.2.0/24"
+              + destination_address_prefixes               = []
+              + destination_application_security_group_ids = []
+              + destination_port_range                     = "*"
+              + destination_port_ranges                    = []
+              + direction                                  = "Outbound"
+              + name                                       = "internal_outbound"
+              + priority                                   = 101
+              + protocol                                   = "Tcp"
+              + source_address_prefix                      = "10.0.2.0/24"
+              + source_address_prefixes                    = []
+              + source_application_security_group_ids      = []
+              + source_port_range                          = "*"
+              + source_port_ranges                         = []
+            },
+          + {
+              + access                                     = "Deny"
+              + description                                = ""
+              + destination_address_prefix                 = "*"
+              + destination_address_prefixes               = []
+              + destination_application_security_group_ids = []
+              + destination_port_range                     = "*"
+              + destination_port_ranges                    = []
+              + direction                                  = "Inbound"
+              + name                                       = "external_inbound"
+              + priority                                   = 102
+              + protocol                                   = "Tcp"
+              + source_address_prefix                      = "*"
+              + source_address_prefixes                    = []
+              + source_application_security_group_ids      = []
+              + source_port_range                          = "*"
+              + source_port_ranges                         = []
+            },
+        ]
+    }
+
+  # azurerm_public_ip.main will be created
+  + resource "azurerm_public_ip" "main" {
+      + allocation_method       = "Static"
+      + fqdn                    = (known after apply)
+      + id                      = (known after apply)
+      + idle_timeout_in_minutes = 4
+      + ip_address              = (known after apply)
+      + ip_version              = "IPv4"
+      + location                = "westus2"
+      + name                    = "publicIPForLB"
+      + resource_group_name     = "rg"
+      + sku                     = "Basic"
+    }
+
+  # azurerm_subnet.internal will be created
+  + resource "azurerm_subnet" "internal" {
+      + address_prefix                                 = (known after apply)
+      + address_prefixes                               = [
+          + "10.0.2.0/24",
+        ]
+      + enforce_private_link_endpoint_network_policies = false
+      + enforce_private_link_service_network_policies  = false
+      + id                                             = (known after apply)
+      + name                                           = "internal"
+      + resource_group_name                            = "rg"
+      + virtual_network_name                           = "20210405-network"
+    }
+
+  # azurerm_virtual_network.main will be created
+  + resource "azurerm_virtual_network" "main" {
+      + address_space         = [
+          + "10.0.0.0/22",
+        ]
+      + guid                  = (known after apply)
+      + id                    = (known after apply)
+      + location              = "westus2"
+      + name                  = "20210405-network"
+      + resource_group_name   = "rg"
+      + subnet                = (known after apply)
+      + vm_protection_enabled = false
+    }
+
+Plan: 13 to add, 0 to change, 0 to destroy.
+╷
+│ Warning: "resource_group_name": [DEPRECATED] This field is no longer used and will be removed in the next major version of the Azure Provider
+│ 
+│   with azurerm_lb_backend_address_pool.main,
+│   on main.tf line 37, in resource "azurerm_lb_backend_address_pool" "main":
+│   37: resource "azurerm_lb_backend_address_pool" "main" {
+│ 
+╵
+
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+Saved the plan to: vm.json
+
+To perform exactly these actions, run the following command to apply:
+    terraform apply "vm.json"
+
+huiren terraform $ terraform apply "vm.json"
+azurerm_managed_disk.main[0]: Creating...
+azurerm_public_ip.main: Creating...
+azurerm_managed_disk.main[1]: Creating...
+azurerm_availability_set.avset: Creating...
+azurerm_virtual_network.main: Creating...
+azurerm_network_security_group.main: Creating...
+azurerm_availability_set.avset: Creation complete after 2s [id=/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Compute/availabilitySets/avset]
+azurerm_public_ip.main: Creation complete after 4s [id=/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Network/publicIPAddresses/publicIPForLB]
+azurerm_lb.main: Creating...
+azurerm_managed_disk.main[1]: Creation complete after 4s [id=/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Compute/disks/datadisk_existing_1]
+azurerm_managed_disk.main[0]: Creation complete after 5s [id=/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Compute/disks/datadisk_existing_0]
+azurerm_virtual_network.main: Creation complete after 6s [id=/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Network/virtualNetworks/20210405-network]
+azurerm_subnet.internal: Creating...
+azurerm_lb.main: Creation complete after 2s [id=/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Network/loadBalancers/loadBalancer]
+azurerm_network_security_group.main: Creation complete after 6s [id=/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Network/networkSecurityGroups/20210405-nsg]
+azurerm_lb_backend_address_pool.main: Creating...
+azurerm_lb_backend_address_pool.main: Creation complete after 2s [id=/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Network/loadBalancers/loadBalancer/backendAddressPools/BackEndAddressPool]
+azurerm_subnet.internal: Creation complete after 4s [id=/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Network/virtualNetworks/20210405-network/subnets/internal]
+azurerm_network_interface.main[0]: Creating...
+azurerm_network_interface.main[1]: Creating...
+azurerm_network_interface.main[1]: Creation complete after 2s [id=/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Network/networkInterfaces/20210405-nic]
+azurerm_network_interface.main[0]: Creation complete after 4s [id=/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Network/networkInterfaces/20210405-nic]
+azurerm_linux_virtual_machine.main[1]: Creating...
+azurerm_linux_virtual_machine.main[0]: Creating...
+azurerm_linux_virtual_machine.main[0]: Still creating... [10s elapsed]
+azurerm_linux_virtual_machine.main[1]: Still creating... [10s elapsed]
+azurerm_linux_virtual_machine.main[0]: Still creating... [20s elapsed]
+azurerm_linux_virtual_machine.main[1]: Still creating... [20s elapsed]
+azurerm_linux_virtual_machine.main[0]: Still creating... [30s elapsed]
+azurerm_linux_virtual_machine.main[1]: Still creating... [30s elapsed]
+azurerm_linux_virtual_machine.main[1]: Still creating... [40s elapsed]
+azurerm_linux_virtual_machine.main[0]: Still creating... [40s elapsed]
+azurerm_linux_virtual_machine.main[1]: Creation complete after 50s [id=/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Compute/virtualMachines/20210405-vm]
+azurerm_linux_virtual_machine.main[0]: Still creating... [50s elapsed]
+╷
+│ Error: A resource with the ID "/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Compute/virtualMachines/20210405-vm" already exists - to be managed via Terraform this resource needs to be imported into the State. Please see the resource documentation for "azurerm_linux_virtual_machine" for more information.
+│ 
+│   with azurerm_linux_virtual_machine.main[0],
+│   on main.tf line 117, in resource "azurerm_linux_virtual_machine" "main":
+│  117: resource "azurerm_linux_virtual_machine" "main" {
+│ 
+╵
+
+huiren terraform $ terraform show
+# azurerm_availability_set.avset:
+resource "azurerm_availability_set" "avset" {
+    id                           = "/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Compute/availabilitySets/avset"
+    location                     = "westus2"
+    managed                      = true
+    name                         = "avset"
+    platform_fault_domain_count  = 2
+    platform_update_domain_count = 2
+    resource_group_name          = "rg"
+}
+
+# azurerm_lb.main:
+resource "azurerm_lb" "main" {
+    id                   = "/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Network/loadBalancers/loadBalancer"
+    location             = "westus2"
+    name                 = "loadBalancer"
+    private_ip_addresses = []
+    resource_group_name  = "rg"
+    sku                  = "Basic"
+
+    frontend_ip_configuration {
+        id                            = "/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Network/loadBalancers/loadBalancer/frontendIPConfigurations/publicIPAddress"
+        inbound_nat_rules             = []
+        load_balancer_rules           = []
+        name                          = "publicIPAddress"
+        outbound_rules                = []
+        private_ip_address_allocation = "Dynamic"
+        private_ip_address_version    = "IPv4"
+        public_ip_address_id          = "/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Network/publicIPAddresses/publicIPForLB"
+    }
+}
+
+# azurerm_lb_backend_address_pool.main:
+resource "azurerm_lb_backend_address_pool" "main" {
+    backend_ip_configurations = []
+    id                        = "/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Network/loadBalancers/loadBalancer/backendAddressPools/BackEndAddressPool"
+    load_balancing_rules      = []
+    loadbalancer_id           = "/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Network/loadBalancers/loadBalancer"
+    name                      = "BackEndAddressPool"
+    outbound_rules            = []
+    resource_group_name       = "rg"
+}
+
+# azurerm_linux_virtual_machine.main[1]:
+resource "azurerm_linux_virtual_machine" "main" {
+    admin_password                  = (sensitive value)
+    admin_username                  = "vmadmin"
+    allow_extension_operations      = true
+    availability_set_id             = "/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Compute/availabilitySets/AVSET"
+    computer_name                   = "20210405-vm"
+    disable_password_authentication = false
+    encryption_at_host_enabled      = false
+    extensions_time_budget          = "PT1H30M"
+    id                              = "/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Compute/virtualMachines/20210405-vm"
+    location                        = "westus2"
+    max_bid_price                   = -1
+    name                            = "20210405-vm"
+    network_interface_ids           = [
+        "/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Network/networkInterfaces/20210405-nic",
+    ]
+    platform_fault_domain           = -1
+    priority                        = "Regular"
+    private_ip_address              = "10.0.2.4"
+    private_ip_addresses            = [
+        "10.0.2.4",
+    ]
+    provision_vm_agent              = true
+    public_ip_addresses             = []
+    resource_group_name             = "rg"
+    size                            = "Standard_D2s_v3"
+    source_image_id                 = "/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Compute/images/Ubuntu18.04"
+    tags                            = {
+        "DevOps" = "Deploy a Web Server in Azure"
+    }
+    virtual_machine_id              = "56c73318-cf3d-4682-b92e-2f79bbc22568"
+
+    os_disk {
+        caching                   = "ReadWrite"
+        disk_size_gb              = 30
+        name                      = "20210405-vm_disk1_5f9facc1bc774017817b7fd18d69e72f"
+        storage_account_type      = "Standard_LRS"
+        write_accelerator_enabled = false
+    }
+}
+
+# azurerm_managed_disk.main[0]:
+resource "azurerm_managed_disk" "main" {
+    create_option        = "Empty"
+    disk_iops_read_write = 500
+    disk_mbps_read_write = 60
+    disk_size_gb         = 1023
+    id                   = "/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Compute/disks/datadisk_existing_0"
+    location             = "westus2"
+    name                 = "datadisk_existing_0"
+    resource_group_name  = "rg"
+    storage_account_type = "Standard_LRS"
+}
+
+# azurerm_managed_disk.main[1]:
+resource "azurerm_managed_disk" "main" {
+    create_option        = "Empty"
+    disk_iops_read_write = 500
+    disk_mbps_read_write = 60
+    disk_size_gb         = 1023
+    id                   = "/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Compute/disks/datadisk_existing_1"
+    location             = "westus2"
+    name                 = "datadisk_existing_1"
+    resource_group_name  = "rg"
+    storage_account_type = "Standard_LRS"
+}
+
+# azurerm_network_interface.main[0]:
+resource "azurerm_network_interface" "main" {
+    applied_dns_servers           = []
+    dns_servers                   = []
+    enable_accelerated_networking = false
+    enable_ip_forwarding          = false
+    id                            = "/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Network/networkInterfaces/20210405-nic"
+    internal_domain_name_suffix   = "3squui2leqgevlazzsfqqq4c5c.xx.internal.cloudapp.net"
+    location                      = "westus2"
+    name                          = "20210405-nic"
+    private_ip_address            = "10.0.2.4"
+    private_ip_addresses          = [
+        "10.0.2.4",
+    ]
+    resource_group_name           = "rg"
+
+    ip_configuration {
+        name                          = "internal"
+        primary                       = true
+        private_ip_address            = "10.0.2.4"
+        private_ip_address_allocation = "Dynamic"
+        private_ip_address_version    = "IPv4"
+        subnet_id                     = "/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Network/virtualNetworks/20210405-network/subnets/internal"
+    }
+}
+
+# azurerm_network_interface.main[1]:
+resource "azurerm_network_interface" "main" {
+    applied_dns_servers           = []
+    dns_servers                   = []
+    enable_accelerated_networking = false
+    enable_ip_forwarding          = false
+    id                            = "/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Network/networkInterfaces/20210405-nic"
+    internal_domain_name_suffix   = "3squui2leqgevlazzsfqqq4c5c.xx.internal.cloudapp.net"
+    location                      = "westus2"
+    name                          = "20210405-nic"
+    private_ip_address            = "10.0.2.4"
+    private_ip_addresses          = [
+        "10.0.2.4",
+    ]
+    resource_group_name           = "rg"
+
+    ip_configuration {
+        name                          = "internal"
+        primary                       = true
+        private_ip_address            = "10.0.2.4"
+        private_ip_address_allocation = "Dynamic"
+        private_ip_address_version    = "IPv4"
+        subnet_id                     = "/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Network/virtualNetworks/20210405-network/subnets/internal"
+    }
+}
+
+# azurerm_network_security_group.main:
+resource "azurerm_network_security_group" "main" {
+    id                  = "/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Network/networkSecurityGroups/20210405-nsg"
+    location            = "westus2"
+    name                = "20210405-nsg"
+    resource_group_name = "rg"
+    security_rule       = [
+        {
+            access                                     = "Allow"
+            description                                = ""
+            destination_address_prefix                 = "10.0.2.0/24"
+            destination_address_prefixes               = []
+            destination_application_security_group_ids = []
+            destination_port_range                     = "*"
+            destination_port_ranges                    = []
+            direction                                  = "Inbound"
+            name                                       = "internal_inbound"
+            priority                                   = 100
+            protocol                                   = "Tcp"
+            source_address_prefix                      = "10.0.2.0/24"
+            source_address_prefixes                    = []
+            source_application_security_group_ids      = []
+            source_port_range                          = "*"
+            source_port_ranges                         = []
+        },
+        {
+            access                                     = "Allow"
+            description                                = ""
+            destination_address_prefix                 = "10.0.2.0/24"
+            destination_address_prefixes               = []
+            destination_application_security_group_ids = []
+            destination_port_range                     = "*"
+            destination_port_ranges                    = []
+            direction                                  = "Outbound"
+            name                                       = "internal_outbound"
+            priority                                   = 101
+            protocol                                   = "Tcp"
+            source_address_prefix                      = "10.0.2.0/24"
+            source_address_prefixes                    = []
+            source_application_security_group_ids      = []
+            source_port_range                          = "*"
+            source_port_ranges                         = []
+        },
+        {
+            access                                     = "Deny"
+            description                                = ""
+            destination_address_prefix                 = "*"
+            destination_address_prefixes               = []
+            destination_application_security_group_ids = []
+            destination_port_range                     = "*"
+            destination_port_ranges                    = []
+            direction                                  = "Inbound"
+            name                                       = "external_inbound"
+            priority                                   = 102
+            protocol                                   = "Tcp"
+            source_address_prefix                      = "*"
+            source_address_prefixes                    = []
+            source_application_security_group_ids      = []
+            source_port_range                          = "*"
+            source_port_ranges                         = []
+        },
+    ]
+}
+
+# azurerm_public_ip.main:
+resource "azurerm_public_ip" "main" {
+    allocation_method       = "Static"
+    id                      = "/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Network/publicIPAddresses/publicIPForLB"
+    idle_timeout_in_minutes = 4
+    ip_address              = "20.69.127.230"
+    ip_version              = "IPv4"
+    location                = "westus2"
+    name                    = "publicIPForLB"
+    resource_group_name     = "rg"
+    sku                     = "Basic"
+}
+
+# azurerm_subnet.internal:
+resource "azurerm_subnet" "internal" {
+    address_prefix                                 = "10.0.2.0/24"
+    address_prefixes                               = [
+        "10.0.2.0/24",
+    ]
+    enforce_private_link_endpoint_network_policies = false
+    enforce_private_link_service_network_policies  = false
+    id                                             = "/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Network/virtualNetworks/20210405-network/subnets/internal"
+    name                                           = "internal"
+    resource_group_name                            = "rg"
+    virtual_network_name                           = "20210405-network"
+}
+
+# azurerm_virtual_network.main:
+resource "azurerm_virtual_network" "main" {
+    address_space         = [
+        "10.0.0.0/22",
+    ]
+    guid                  = "234aa1ec-248b-4a0c-ac19-cc8b0843c2fa"
+    id                    = "/subscriptions/5bb35c36-233e-4b7e-afd9-a2b795899fb9/resourceGroups/rg/providers/Microsoft.Network/virtualNetworks/20210405-network"
+    location              = "westus2"
+    name                  = "20210405-network"
+    resource_group_name   = "rg"
+    subnet                = []
+    vm_protection_enabled = false
+}
+
+huiren terraform $ 
