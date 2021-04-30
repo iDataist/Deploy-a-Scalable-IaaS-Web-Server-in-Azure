@@ -42,7 +42,7 @@ resource "azurerm_lb_backend_address_pool" "main" {
 
 resource "azurerm_network_interface" "main" {
   count               = var.instance_count
-  name                = "${var.prefix}-nic"
+  name                = "nic-${count.index}"
   resource_group_name = var.resource_group
   location            = var.location
 
@@ -63,7 +63,7 @@ resource "azurerm_network_security_group" "main" {
     priority                   = 100
     direction                  = "Inbound"
     access                     = "Allow"
-    protocol                   = "Tcp"
+    protocol                   = "*"
     source_port_range          = "*"
     destination_port_range     = "*"
     source_address_prefix      = "10.0.2.0/24"
@@ -75,7 +75,7 @@ resource "azurerm_network_security_group" "main" {
     priority                   = 101
     direction                  = "Outbound"
     access                     = "Allow"
-    protocol                   = "Tcp"
+    protocol                   = "*"
     source_port_range          = "*"
     destination_port_range     = "*"
     source_address_prefix      = "10.0.2.0/24"
@@ -87,7 +87,7 @@ resource "azurerm_network_security_group" "main" {
     priority                   = 102
     direction                  = "Inbound"
     access                     = "Deny"
-    protocol                   = "Tcp"
+    protocol                   = "*"
     source_port_range          = "*"
     destination_port_range     = "*"
     source_address_prefix      = "*"
@@ -97,7 +97,7 @@ resource "azurerm_network_security_group" "main" {
 
 resource "azurerm_managed_disk" "main" {
   count                = var.instance_count
-  name                 = "datadisk_existing_${count.index}"
+  name                 = "datadisk_existing-${count.index}"
   location             = var.location
   resource_group_name  = var.resource_group
   storage_account_type = "Standard_LRS"
@@ -106,7 +106,7 @@ resource "azurerm_managed_disk" "main" {
 }
 
 resource "azurerm_availability_set" "avset" {
-  name                         = "avset"
+  name                         = "avset" 
   location                     = var.location
   resource_group_name          = var.resource_group
   platform_fault_domain_count  = var.instance_count
@@ -116,7 +116,7 @@ resource "azurerm_availability_set" "avset" {
 
 resource "azurerm_linux_virtual_machine" "main" {
   count                           = var.instance_count
-  name                            = "${var.prefix}-vm"
+  name                            = "vm-${count.index}"
   resource_group_name             = var.resource_group
   location                        = var.location
   size                            = "Standard_D2s_v3"

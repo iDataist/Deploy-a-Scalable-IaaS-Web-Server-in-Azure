@@ -10,7 +10,7 @@ variable "location" {
 
 variable "resource_group" {
   description = "The Azure Resource Group in which all resources in this example should be created."
-  default     = "rg"
+  default     = "20210430group"
 }
 
 variable "instance_count" {

@@ -20,7 +20,7 @@
 		"image_offer": "UbuntuServer",
 		"image_sku": "18.04-LTS",
 
-		"managed_image_resource_group_name": "rg",
+		"managed_image_resource_group_name": "20210430group",
 		"managed_image_name": "Ubuntu18.04",
 
 		"location": "West US 2",
