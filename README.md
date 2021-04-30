@@ -1,11 +1,7 @@
 # Azure Infrastructure Operations Project: Deploying a scalable IaaS web server in Azure
 
 ## Introduction
-In modern deployments, automated deployment and management of cloud infrastructure are crucial for ensuring the high uptimes that customers expect. In this project, I wrote infrastructure as code using Terraform and Packer to deploy a customizable, scalable web server in Azure. First, I created a policy that ensures all indexed resources are tagged. Second, I created and deployed a customized web server image with Packer. Lastly, I used Terraform to write the infrastructure configuration, which uses the customized image to create a set of load-balanced web servers. 
-
-## Getting Started
-1. Clone this repository
-2. Create your infrastructure as code
+In modern deployments, automated deployment and management of cloud infrastructure are crucial for ensuring the high uptimes that customers expect. In this project, I wrote infrastructure as code using Packer and Terraform to deploy a customizable, scalable web server in Azure. First, I created a policy that ensures all virtual machines are tagged. Second, I created and deployed a customized web server image with Packer. Lastly, I used Terraform to write the infrastructure configuration, which uses the customized image to create a set of load-balanced web servers. 
 
 ## Dependencies
 1. Create an [Azure Account](https://portal.azure.com) 
@@ -46,9 +42,11 @@ In modern deployments, automated deployment and management of cloud infrastructu
     The output should look like [packer_output.txt](https://github.com/iDataist/Deploy-a-Web-Server-in-Azure/blob/main/packer/packer_output.txt). 
     You can also view the image on the Azure portal.
     ![](packer/packer_image.png)
-3. To deploy the web server using Terraform, run the commands below. You can edit the `var.tf` file to customize your deployment by adding the default values. Or you can input the values of the variables when terraform asked for them.
+3. To deploy the web server using Terraform, run the commands below. You can edit the `var.tf` file to customize your deployment by updating the default values. 
     ```
     terraform init
+    terraform fmt main.tf
+    terraform fmt var.tf
     terraform plan -out vm.json
     terraform apply "vm.json"
     terraform show
