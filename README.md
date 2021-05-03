@@ -10,7 +10,7 @@ In modern deployments, automated deployment and management of cloud infrastructu
 4. Install [Terraform](https://www.terraform.io/downloads.html)
 
 ## Instructions and Output
-1. To create the policy and policy assignment, run the commands below. The output should look like [policy_output.txt](https://github.com/iDataist/Deploy-a-Web-Server-in-Azure/blob/main/policy/policy_output.txt). 
+1. To create the policy and policy assignment, run the commands below. 
     ```
     az group create \
     --location westus2 \
@@ -39,7 +39,6 @@ In modern deployments, automated deployment and management of cloud infrastructu
     ```
     packer build server.json
     ```
-    The output should look like [packer_output.txt](https://github.com/iDataist/Deploy-a-Web-Server-in-Azure/blob/main/packer/packer_output.txt). 
     You can also view the image on the Azure portal.
     ![](packer/packer_image.png)
 3. To deploy the web server using Terraform, run the commands below. You can edit the `var.tf` file to customize your deployment by updating the default values. 
@@ -51,6 +50,6 @@ In modern deployments, automated deployment and management of cloud infrastructu
     terraform apply "vm.json"
     terraform show
     ```
-    The output should look like [terraform_output.txt](https://github.com/iDataist/Deploy-a-Web-Server-in-Azure/blob/main/terraform/terraform_output.txt). 
+
     You can also view the resources on the Azure portal.
     ![](terraform/resource.png)
