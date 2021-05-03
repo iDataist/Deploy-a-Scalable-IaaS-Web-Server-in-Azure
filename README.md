@@ -1,4 +1,4 @@
-# Azure Infrastructure Operations Project: Deploying a scalable IaaS web server in Azure
+# Deploying a Scalable IaaS Web Server in Azure
 
 ## Introduction
 In modern deployments, automated deployment and management of cloud infrastructure are crucial for ensuring the high uptimes that customers expect. In this project, I wrote infrastructure as code using Packer and Terraform to deploy a customizable, scalable web server in Azure. First, I created a policy that ensures all virtual machines are tagged. Second, I created and deployed a customized web server image with Packer. Lastly, I used Terraform to write the infrastructure configuration, which uses the customized image to create a set of load-balanced web servers. 
