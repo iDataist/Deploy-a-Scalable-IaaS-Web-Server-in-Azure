@@ -2,3 +2,6 @@
 .DS_Store?
 commands.sh
 terraform/.terraform/providers/registry.terraform.io/hashicorp/azurerm/2.57.0/darwin_amd64/terraform-provider-azurerm_v2.57.0_x5
+terraform.tfstate
+.terraform
+.terraform.lock.hcl
