@@ -19,10 +19,10 @@ az policy assignment list -g 20210430group
 az ad sp create-for-rbac --query "{ client_id: appId, client_secret: password, tenant_id: tenant }"
 az account show --query "{ subscription_id: id }"
 
-export BUILD_SUBSCRIPTION_ID=5bb35c36-233e-4b7e-afd9-a2b795899fb9
-export BUILD_TENANT_ID=10e19cba-5b4d-42f0-a5b1-0e066efe7fe1
-export BUILD_CLIENT_ID=7c48bb82-7d2b-4682-8415-6436bfc00933
-export BUILD_CLIENT_SECRET=Q03qG8ShBmIt-KVatTEP_SMOhB80V5WN3.
+export BUILD_SUBSCRIPTION_ID=
+export BUILD_TENANT_ID=
+export BUILD_CLIENT_ID=
+export BUILD_CLIENT_SECRET=
 
 packer build server.json 
 az image list
