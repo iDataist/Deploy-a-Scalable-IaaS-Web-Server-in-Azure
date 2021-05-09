@@ -28,7 +28,7 @@ Automated deployment and management of cloud infrastructure are crucial for ensu
 
     az policy assignment list -g 20210509group
     ```
-    Check policy on the Azure Portal.
+    Check the policy on the Azure Portal.
     ![](screenshots/policy.png)
 2. To deploy the packer image, retrieve `subscription_id`, `tenant_id`, `client_id`, and `client_secret`, and save them as environment variables.
     ```
