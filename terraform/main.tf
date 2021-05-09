@@ -71,20 +71,8 @@ resource "azurerm_network_security_group" "main" {
   }
 
   security_rule {
-    name                       = "internal_outbound"
-    priority                   = 101
-    direction                  = "Outbound"
-    access                     = "Allow"
-    protocol                   = "*"
-    source_port_range          = "*"
-    destination_port_range     = "*"
-    source_address_prefix      = "10.0.2.0/24"
-    destination_address_prefix = "10.0.2.0/24"
-  }
-
-  security_rule {
     name                       = "external_inbound"
-    priority                   = 102
+    priority                   = 101
     direction                  = "Inbound"
     access                     = "Deny"
     protocol                   = "*"
